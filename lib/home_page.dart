@@ -32,9 +32,12 @@ class _HomePageState extends State<HomePage> {
             itemCount: widget.currencies.length,
             itemBuilder: (BuildContext context, int index) {
               final Map currency = widget.currencies[index];
+              final String currencyName = currency['name'];
+              final String currencyJpyPrice =
+                  currency[currencyName]['jpy'].toString();
               final MaterialColor color = _colors[index % _colors.length];
 
-              return _getListItemUi(currency, color);
+              return _getListItemUi(currencyName, currencyJpyPrice, color);
             },
           ),
         )
@@ -42,37 +45,24 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  ListTile _getListItemUi(Map currency, MaterialColor color) {
+  ListTile _getListItemUi(
+      String currencyName, String currencyJpyPrice, MaterialColor color) {
     return new ListTile(
       leading: new CircleAvatar(
         backgroundColor: color,
-        child: new Text(currency['name'][0]),
+        child: new Text(currencyName[0]),
       ),
-      title: new Text(currency['name'],
+      title: new Text(currencyName,
           style: new TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: _getSubtitleText(
-          currency['price_usd'], currency['percent_change_1h']),
+      subtitle: _getSubtitleText(currencyJpyPrice),
       isThreeLine: true,
     );
   }
 
-  Widget _getSubtitleText(String priceUSD, String percentageChange) {
+  Widget _getSubtitleText(String priceJpy) {
     TextSpan priceTextWidget = new TextSpan(
-        text: "\$$priceUSD\n", style: new TextStyle(color: Colors.black));
-    String percentageChangeText = "1 hour: $percentageChange%";
-    TextSpan percentageChangeTextWidget;
+        text: "\¥$priceJpy\n", style: new TextStyle(color: Colors.black));
 
-    if (double.parse(percentageChange) > 0) {
-      percentageChangeTextWidget = new TextSpan(
-          text: percentageChangeText,
-          style: new TextStyle(color: Colors.green));
-    } else {
-      percentageChangeTextWidget = new TextSpan(
-          text: percentageChangeText, style: new TextStyle(color: Colors.red));
-    }
-
-    return new RichText(
-        text: new TextSpan(
-            children: [priceTextWidget, percentageChangeTextWidget]));
+    return new RichText(text: new TextSpan(children: [priceTextWidget]));
   }
 }
