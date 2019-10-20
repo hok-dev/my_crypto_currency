@@ -5,8 +5,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() async {
-  // List currencies = await getCurrencies();
-  List currencies = [];
   const String zny_id = "bitzeny";
   const String mona_id = "monacoin";
   const String alis_id = "alis";
@@ -31,17 +29,17 @@ void main() async {
     xrp_id
   ];
 
-  for (var id in currencyIdList) {
-    currencies.add(await getCurrency(id));
-  }
+  // for (var id in currencyIdList) {
+  //   currencies.add(await getCurrency(id));
+  // }
 
-  print(currencies);
-  runApp(new MyApp(currencies));
+  // print(currencies);
+  runApp(new MyApp(currencyIdList));
 }
 
 class MyApp extends StatelessWidget {
-  final List _currencies;
-  MyApp(this._currencies);
+  final List currencyIdList;
+  MyApp(this.currencyIdList);
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +49,19 @@ class MyApp extends StatelessWidget {
           primaryColor: defaultTargetPlatform == TargetPlatform.iOS
               ? Colors.grey[100]
               : null),
-      home: new HomePage(_currencies),
+      home: new HomePage(currencyIdList),
     );
   }
 }
 
-Future<Map> getCurrency(String currencyId) async {
-  Map currencyMap = {};
-  String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
-      currencyId +
-      "&vs_currencies=jpy";
-  http.Response response = await http.get(cryptoUrl);
-  currencyMap = jsonDecode(response.body);
-  currencyMap['name'] = currencyId;
+// Future<Map> getCurrency(String currencyId) async {
+//   Map currencyMap = {};
+//   String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
+//       currencyId +
+//       "&vs_currencies=jpy";
+//   http.Response response = await http.get(cryptoUrl);
+//   currencyMap = jsonDecode(response.body);
+//   currencyMap['name'] = currencyId;
 
-  return currencyMap;
-}
+//   return currencyMap;
+// }
