@@ -74,7 +74,7 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text("Currency Converter"),
+        title: Text(currencyName + " Converter"),
       ),
       body: currencies == null
           ? Center(child: CircularProgressIndicator())

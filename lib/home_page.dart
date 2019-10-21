@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("My Crypto Currency"),
+        title: new Text("My Cryptocurrency Converter"),
         elevation: defaultTargetPlatform == TargetPlatform.iOS ? 0.0 : 5.0,
       ),
       body: _cryptoWidget(),
@@ -38,7 +38,6 @@ class _HomePageState extends State<HomePage> {
             itemCount: widget.currencyList.length,
             itemBuilder: (BuildContext context, int index) {
               final Map currency = widget.currencyList[index];
-              // final MaterialColor color = _colors[index % _colors.length];
 
               return _getListItemUi(currency['id'], currency['name'],
                   currency['url'], currency['image']);
@@ -56,8 +55,8 @@ class _HomePageState extends State<HomePage> {
       alignment: FractionalOffset.centerLeft,
       child: new Image(
         image: new AssetImage(imagePath),
-        height: 92.0,
-        width: 92.0,
+        height: 80.0,
+        width: 80.0,
       ),
     );
 
@@ -86,18 +85,23 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           new Container(height: 4.0),
           new Text(currencyName, style: headerTextStyle),
-          new Container(height: 10.0),
-          new Text("id: " + currencyId, style: subHeaderTextStyle),
+          new Container(height: 5.0),
           new Container(
               margin: new EdgeInsets.symmetric(vertical: 8.0),
               height: 2.0,
               width: 18.0,
               color: new Color(0xFF867666)),
+          new Text("id: " + currencyId, style: subHeaderTextStyle),
+          // new Container(
+          //     margin: new EdgeInsets.symmetric(vertical: 8.0),
+          //     height: 2.0,
+          //     width: 18.0,
+          //     color: new Color(0xFF867666)),
           new Row(
             children: <Widget>[
-              new Expanded(
-                  child: _currencyValue(
-                      value: "currency.distance", image: imagePath)),
+              // new Expanded(
+              //     child: _currencyValue(
+              //         value: "currency.distance", image: imagePath)),
               // new Expanded(
               //     child: _currencyValue(
               //         value: "currency.gravity", image: imagePath))
@@ -117,8 +121,8 @@ class _HomePageState extends State<HomePage> {
         },
         child: new Container(
           child: currencyCardContent,
-          height: 124.0,
-          margin: new EdgeInsets.only(left: 46.0),
+          height: 112.0,
+          margin: new EdgeInsets.only(left: 38.0),
           decoration: new BoxDecoration(
             color: new Color(0xFFEAE2D6),
             shape: BoxShape.rectangle,
@@ -134,9 +138,9 @@ class _HomePageState extends State<HomePage> {
         ));
 
     return new Container(
-        height: 120.0,
+        height: 116.0,
         margin: const EdgeInsets.symmetric(
-          vertical: 16.0,
+          vertical: 15.0,
           horizontal: 24.0,
         ),
         child: new Stack(
