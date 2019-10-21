@@ -31,31 +31,43 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
   }
 
   Future<String> _loadCurrencies(String currencyId) async {
-    String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
-        currencyId +
-        "&vs_currencies=jpy";
-    http.Response response = await http.get(cryptoUrl);
-    currencyMap = jsonDecode(response.body);
-    currencies = currencyMap.keys.toList();
-    result = currencyMap[currencyId]['jpy'].toString();
-    setState(() {});
-    print("_loadCurrencies" + result);
-    return "Success";
+    try {
+      String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
+          currencyId +
+          "&vs_currencies=jpy";
+      http.Response response = await http.get(cryptoUrl);
+      currencyMap = jsonDecode(response.body);
+      currencies = currencyMap.keys.toList();
+      result = currencyMap[currencyId]['jpy'].toString();
+      setState(() {});
+      print("_loadCurrencies" + result);
+      return "Success";
+    } catch (e) {
+      result = "API connection error";
+      print("_loadCurrencies error");
+      return "Failure";
+    }
   }
 
   Future<String> _doConversion(String currencyId) async {
-    String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
-        currencyId +
-        "&vs_currencies=jpy";
-    http.Response response = await http.get(cryptoUrl);
-    currencyMap = jsonDecode(response.body);
-    setState(() {
-      result = (double.parse(fromTextController.text) *
-              (currencyMap[currencyId]['jpy']))
-          .toString();
-    });
-    print("_doConversion" + result);
-    return "Success";
+    try {
+      String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
+          currencyId +
+          "&vs_currencies=jpy";
+      http.Response response = await http.get(cryptoUrl);
+      currencyMap = jsonDecode(response.body);
+      setState(() {
+        result = (double.parse(fromTextController.text) *
+                (currencyMap[currencyId]['jpy']))
+            .toString();
+      });
+      print("_doConversion" + result);
+      return "Success";
+    } catch (e) {
+      result = "API connection error";
+      print("_loadCurrencies error");
+      return "Failure";
+    }
   }
 
   @override
