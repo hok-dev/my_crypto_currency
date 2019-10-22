@@ -13,6 +13,7 @@ void main() async {
   const String btc_id = "bitcoin";
   const String eth_id = "ethereum";
   const String xrp_id = "ripple";
+  const String nem_id = "nem";
 
   Map znyMap = {
     'id': zny_id,
@@ -74,11 +75,18 @@ void main() async {
     'url': "https://www.ripple.com/xrp/",
     'image': "assets/coins/xrp.png"
   };
+  Map nemMap = {
+    'id': nem_id,
+    'name': "NEM (XEM)",
+    'url': "https://nem.io/",
+    'image': "assets/coins/nem.png"
+  };
 
   List currencyList = [
     btcMap,
     ethMap,
     xrpMap,
+    nemMap,
     znyMap,
     monaMap,
     alisMap,

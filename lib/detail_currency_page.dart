@@ -20,6 +20,8 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
   Map currencyMap = {};
   List<String> currencies;
   String result;
+  String fromCurrency = "JPY";
+  List<String> currenciesList = ["JPY", "USD"];
 
   Future<Map> futureCurrency;
   _DetailCurrencyPageState(this.currencyId, this.currencyName);
@@ -34,13 +36,19 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
     try {
       String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
           currencyId +
-          "&vs_currencies=jpy";
+          "&vs_currencies=" +
+          fromCurrency;
       http.Response response = await http.get(cryptoUrl);
       currencyMap = jsonDecode(response.body);
       currencies = currencyMap.keys.toList();
-      result = currencyMap[currencyId]['jpy'].toString();
+      if (fromCurrency == "JPY") {
+        result = currencyMap[currencyId]["jpy"].toString();
+      } else {
+        result = currencyMap[currencyId]["usd"].toString();
+      }
+
       setState(() {});
-      print("_loadCurrencies" + result);
+      // print("_loadCurrencies" + result);
       return "Success";
     } catch (e) {
       result = "API connection error";
@@ -53,21 +61,37 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
     try {
       String cryptoUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" +
           currencyId +
-          "&vs_currencies=jpy";
+          "&vs_currencies=" +
+          fromCurrency;
       http.Response response = await http.get(cryptoUrl);
       currencyMap = jsonDecode(response.body);
-      setState(() {
-        result = (double.parse(fromTextController.text) *
-                (currencyMap[currencyId]['jpy']))
-            .toString();
-      });
-      print("_doConversion" + result);
+      if (fromCurrency == "JPY") {
+        setState(() {
+          result = (double.parse(fromTextController.text) *
+                  (currencyMap[currencyId]["jpy"]))
+              .toString();
+        });
+      } else {
+        setState(() {
+          result = (double.parse(fromTextController.text) *
+                  (currencyMap[currencyId]["usd"]))
+              .toString();
+        });
+      }
+
+      // print("_doConversion" + result);
       return "Success";
     } catch (e) {
       result = "API connection error";
       print("_loadCurrencies error");
       return "Failure";
     }
+  }
+
+  _onFromChanged(String value) {
+    setState(() {
+      fromCurrency = value;
+    });
   }
 
   @override
@@ -101,9 +125,11 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                           keyboardType:
                               TextInputType.numberWithOptions(decimal: true),
                         ),
+                        trailing: _buildDropDownButton(fromCurrency),
                       ),
                       IconButton(
                         icon: Icon(Icons.arrow_downward),
+                        iconSize: 50.0,
                         onPressed: () {
                           _doConversion(this.currencyId);
                         },
@@ -123,6 +149,27 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                 ),
               ),
             ),
+    );
+  }
+
+  Widget _buildDropDownButton(String currencyCategory) {
+    return DropdownButton(
+      value: currencyCategory,
+      items: currenciesList
+          .map((String value) => DropdownMenuItem(
+                value: value,
+                child: Row(
+                  children: <Widget>[
+                    Text(value),
+                  ],
+                ),
+              ))
+          .toList(),
+      onChanged: (String value) {
+        if (currencyCategory == fromCurrency) {
+          _onFromChanged(value);
+        }
+      },
     );
   }
 }
