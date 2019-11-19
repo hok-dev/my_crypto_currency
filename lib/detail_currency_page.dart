@@ -124,6 +124,9 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                           style: TextStyle(fontSize: 20.0, color: Colors.black),
                           keyboardType:
                               TextInputType.numberWithOptions(decimal: true),
+                          onEditingComplete: () {
+                            _doConversion(this.currencyId);
+                          },
                         ),
                         trailing: _buildDropDownButton(fromCurrency),
                       ),
