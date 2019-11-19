@@ -1,4 +1,4 @@
-package com.example.my_crypto_currency;
+package com.example.my_cc;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

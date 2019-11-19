@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:my_crypto_currency/detail_currency_page.dart';
+import 'package:my_cc/detail_currency_page.dart';
 
 class HomePage extends StatefulWidget {
   final List currencyList;

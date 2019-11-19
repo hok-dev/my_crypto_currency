@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:my_crypto_currency/home_page.dart';
+import 'package:my_cc/home_page.dart';
 
 void main() async {
   const String zny_id = "bitzeny";
