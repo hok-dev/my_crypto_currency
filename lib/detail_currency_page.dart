@@ -131,7 +131,7 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                         trailing: _buildDropDownButton(fromCurrency),
                       ),
                       IconButton(
-                        icon: Icon(Icons.arrow_downward),
+                        icon: Icon(Icons.arrow_drop_down_circle),
                         iconSize: 50.0,
                         onPressed: () {
                           _doConversion(this.currencyId);
