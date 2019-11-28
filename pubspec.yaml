@@ -28,6 +28,8 @@ dependencies:
 
   http: any
 
+  firebase_admob: 0.9.0+9
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

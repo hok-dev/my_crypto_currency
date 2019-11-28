@@ -1,3 +1,4 @@
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_cc/detail_currency_page.dart';
@@ -15,6 +16,18 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    // インスタンスを初期化
+    FirebaseAdMob.instance
+        .initialize(appId: 'ca-app-pub-3891596250078294~3813146956');
+    // バナー広告を表示する
+    myBanner
+      ..load()
+      ..show(
+        // ボトムからのオフセットで表示位置を決定
+        anchorOffset: 0.0,
+        anchorType: AnchorType.bottom,
+      );
+
     setState(() {});
   }
 
@@ -151,3 +164,26 @@ class _HomePageState extends State<HomePage> {
         ));
   }
 }
+
+// 広告ターゲット
+MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+  keywords: <String>['flutterio', 'beautiful apps'],
+  contentUrl: 'https://flutter.io',
+  birthday: DateTime.now(),
+  childDirected: false,
+  designedForFamilies: false,
+  gender: MobileAdGender.male, // or female, unknown
+  testDevices: <String>[], // Android emulators are considered test devices
+);
+
+BannerAd myBanner = BannerAd(
+  // テスト用のIDを使用
+  // リリース時にはIDを置き換える必要あり
+  adUnitId: BannerAd.testAdUnitId,
+  size: AdSize.smartBanner,
+  targetingInfo: targetingInfo,
+  listener: (MobileAdEvent event) {
+    // 広告の読み込みが完了
+    print("BannerAd event is $event");
+  },
+);

@@ -106,6 +106,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      // 右上Debug削除
+      debugShowCheckedModeBanner: false,
       theme: new ThemeData(
           primarySwatch: Colors.pink,
           primaryColor: defaultTargetPlatform == TargetPlatform.iOS
