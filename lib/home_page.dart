@@ -179,11 +179,11 @@ String getAppId() {
   if (Platform.isIOS) {
     print("appId ios");
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294~3813146956';
+    return 'ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx';
   } else if (Platform.isAndroid) {
     print("appId Android");
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294~3193322513';
+    return 'ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx';
   }
   return null;
 }
@@ -192,11 +192,11 @@ String getBannerId() {
   if (Platform.isIOS) {
     print("appId ios");
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294/2718244058';
+    return 'ca-app-pub-xxxxxxxxxxxxxxxx/xxxxxxxxxx';
   } else if (Platform.isAndroid) {
     print("appId Android");
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294/9375587487';
+    return 'ca-app-pub-xxxxxxxxxxxxxxxx/xxxxxxxxxx';
   }
   return null;
 }
