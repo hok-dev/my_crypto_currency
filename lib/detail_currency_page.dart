@@ -82,11 +82,11 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
       }
 
       // print("_doConversion" + result);
-      return "Success";
+      return result;
     } catch (e) {
       result = "API connection error";
       print("_loadCurrencies error");
-      return "Failure";
+      return result;
     }
   }
 
@@ -136,16 +136,17 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                         icon: Icon(Icons.arrow_drop_down_circle),
                         iconSize: 50.0,
                         onPressed: () {
-                          _doConversion(this.currencyId);
-                          Clipboard.setData(new ClipboardData(text: result));
-                          Fluttertoast.showToast(
-                              msg: "Clipboard Copied",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.TOP,
-                              timeInSecForIos: 1,
-                              backgroundColor: Colors.grey,
-                              textColor: Colors.white,
-                              fontSize: 10.0);
+                          _doConversion(this.currencyId).then((result) {
+                            Clipboard.setData(new ClipboardData(text: result));
+                            Fluttertoast.showToast(
+                                msg: "Clipboard Copied",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.TOP,
+                                // timeInSecForIos: 1,
+                                backgroundColor: Colors.grey,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          });
                         },
                       ),
                       ListTile(
