@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -137,6 +138,14 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                         onPressed: () {
                           _doConversion(this.currencyId);
                           Clipboard.setData(new ClipboardData(text: result));
+                          Fluttertoast.showToast(
+                              msg: "Clipboard Copied",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.TOP,
+                              timeInSecForIos: 1,
+                              backgroundColor: Colors.grey,
+                              textColor: Colors.white,
+                              fontSize: 10.0);
                         },
                       ),
                       ListTile(
