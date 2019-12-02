@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -135,6 +136,7 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                         iconSize: 50.0,
                         onPressed: () {
                           _doConversion(this.currencyId);
+                          Clipboard.setData(new ClipboardData(text: result));
                         },
                       ),
                       ListTile(
