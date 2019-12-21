@@ -63,16 +63,6 @@ class _HomePageState extends State<HomePage> {
 
   Container _getListItemUi(
       String currencyId, String currencyName, String url, String imagePath) {
-    final currencyThumbnail = new Container(
-      margin: new EdgeInsets.symmetric(vertical: 16.0),
-      alignment: FractionalOffset.centerLeft,
-      child: new Image(
-        image: new AssetImage(imagePath),
-        height: 80.0,
-        width: 80.0,
-      ),
-    );
-
     final baseTextStyle = const TextStyle(fontFamily: 'Poppins');
     final regularTextStyle = baseTextStyle.copyWith(
         color: const Color(0xffb6b2df),
@@ -89,6 +79,24 @@ class _HomePageState extends State<HomePage> {
         new Text(url, style: regularTextStyle),
       ]);
     }
+
+    final currencyThumbnail = GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      DetailCurrencyPage(currencyId, currencyName)));
+        },
+        child: new Container(
+          margin: new EdgeInsets.symmetric(vertical: 16.0),
+          alignment: FractionalOffset.centerLeft,
+          child: new Image(
+            image: new AssetImage(imagePath),
+            height: 80.0,
+            width: 80.0,
+          ),
+        ));
 
     final currencyCardContent = new Container(
       margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
