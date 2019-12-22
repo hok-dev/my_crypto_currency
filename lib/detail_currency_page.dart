@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// Androidで挙動不良起動せず一旦コメントアウト
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -138,14 +139,15 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                         onPressed: () {
                           _doConversion(this.currencyId).then((result) {
                             Clipboard.setData(new ClipboardData(text: result));
-                            Fluttertoast.showToast(
-                                msg: "Clipboard Copied",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.TOP,
-                                // timeInSecForIos: 1,
-                                backgroundColor: Colors.grey,
-                                textColor: Colors.white,
-                                fontSize: 16.0);
+                            // Androidで挙動不良起動せず一旦コメントアウト
+                            // Fluttertoast.showToast(
+                            //     msg: "Clipboard Copied",
+                            //     toastLength: Toast.LENGTH_SHORT,
+                            //     gravity: ToastGravity.TOP,
+                            //     // timeInSecForIos: 1,
+                            //     backgroundColor: Colors.grey,
+                            //     textColor: Colors.white,
+                            //     fontSize: 16.0);
                           });
                         },
                       ),
@@ -157,6 +159,12 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                                   style: Theme.of(context).textTheme.display1,
                                 )
                               : Text(""),
+                        ),
+                      ),
+                      ListTile(
+                        title: Text(
+                          "Copy the after convert currency to the clipboard",
+                          style: TextStyle(fontSize: 16.0, color: Colors.black),
                         ),
                       ),
                     ],

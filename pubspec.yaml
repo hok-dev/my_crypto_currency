@@ -29,8 +29,8 @@ dependencies:
   http: any
 
   firebase_admob: 0.9.0+9
-
-  fluttertoast: ^3.1.3
+  # Androidで挙動不良で起動せず一旦コメントアウト
+  # fluttertoast: ^3.1.3
 
 dev_dependencies:
   flutter_test:
