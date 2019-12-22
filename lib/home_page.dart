@@ -44,21 +44,23 @@ class _HomePageState extends State<HomePage> {
 
   Widget _cryptoWidget() {
     return new Container(
+        // 最下Listが広告に被らない様にmarginセット
+        margin: const EdgeInsets.only(top: 10.0, bottom: 50.0),
         child: new Column(
-      children: <Widget>[
-        new Flexible(
-          child: new ListView.builder(
-            itemCount: widget.currencyList.length,
-            itemBuilder: (BuildContext context, int index) {
-              final Map currency = widget.currencyList[index];
+          children: <Widget>[
+            new Flexible(
+              child: new ListView.builder(
+                itemCount: widget.currencyList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final Map currency = widget.currencyList[index];
 
-              return _getListItemUi(currency['id'], currency['name'],
-                  currency['url'], currency['image']);
-            },
-          ),
-        )
-      ],
-    ));
+                  return _getListItemUi(currency['id'], currency['name'],
+                      currency['url'], currency['image']);
+                },
+              ),
+            )
+          ],
+        ));
   }
 
   Container _getListItemUi(
@@ -93,41 +95,41 @@ class _HomePageState extends State<HomePage> {
           alignment: FractionalOffset.centerLeft,
           child: new Image(
             image: new AssetImage(imagePath),
-            height: 80.0,
-            width: 80.0,
+            height: 50.0,
+            width: 50.0,
           ),
         ));
 
     final currencyCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      margin: new EdgeInsets.fromLTRB(46.0, 16.0, 16.0, 16.0),
       constraints: new BoxConstraints.expand(),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Container(height: 4.0),
+          new Container(height: 9.0),
           new Text(currencyName, style: headerTextStyle),
-          new Container(height: 5.0),
-          new Container(
-              margin: new EdgeInsets.symmetric(vertical: 8.0),
-              height: 2.0,
-              width: 18.0,
-              color: new Color(0xFF867666)),
-          new Text("id: " + currencyId, style: subHeaderTextStyle),
+          // new Container(height: 5.0),
           // new Container(
           //     margin: new EdgeInsets.symmetric(vertical: 8.0),
           //     height: 2.0,
           //     width: 18.0,
           //     color: new Color(0xFF867666)),
-          new Row(
-            children: <Widget>[
-              // new Expanded(
-              //     child: _currencyValue(
-              //         value: "currency.distance", image: imagePath)),
-              // new Expanded(
-              //     child: _currencyValue(
-              //         value: "currency.gravity", image: imagePath))
-            ],
-          ),
+          // new Text("id: " + currencyId, style: subHeaderTextStyle),
+          // // new Container(
+          // //     margin: new EdgeInsets.symmetric(vertical: 8.0),
+          // //     height: 2.0,
+          // //     width: 18.0,
+          // //     color: new Color(0xFF867666)),
+          // new Row(
+          //   children: <Widget>[
+          //     // new Expanded(
+          //     //     child: _currencyValue(
+          //     //         value: "currency.distance", image: imagePath)),
+          //     // new Expanded(
+          //     //     child: _currencyValue(
+          //     //         value: "currency.gravity", image: imagePath))
+          //   ],
+          // ),
         ],
       ),
     );
@@ -143,7 +145,7 @@ class _HomePageState extends State<HomePage> {
         child: new Container(
           child: currencyCardContent,
           height: 112.0,
-          margin: new EdgeInsets.only(left: 38.0),
+          margin: new EdgeInsets.only(left: 27.0),
           decoration: new BoxDecoration(
             color: new Color(0xFFEAE2D6),
             shape: BoxShape.rectangle,
@@ -159,9 +161,9 @@ class _HomePageState extends State<HomePage> {
         ));
 
     return new Container(
-        height: 116.0,
+        height: 80.0,
         margin: const EdgeInsets.symmetric(
-          vertical: 15.0,
+          vertical: 10.0,
           horizontal: 24.0,
         ),
         child: new Stack(
