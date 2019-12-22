@@ -103,6 +103,7 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
       appBar: AppBar(
         title: Text(currencyName + " Converter"),
       ),
+      resizeToAvoidBottomInset: false,
       body: currencies == null
           ? Center(child: CircularProgressIndicator())
           : Container(
