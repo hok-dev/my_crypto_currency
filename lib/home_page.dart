@@ -206,6 +206,19 @@ String getBannerId() {
   return null;
 }
 
+String getBannerId() {
+  if (Platform.isIOS) {
+    print("appId ios");
+    // return BannerAd.testAdUnitId;
+    return 'ca-app-pub-xxxxxxxxxxxxxxxx/xxxxxxxxxx';
+  } else if (Platform.isAndroid) {
+    print("appId Android");
+    // return BannerAd.testAdUnitId;
+    return 'ca-app-pub-xxxxxxxxxxxxxxxx/xxxxxxxxxx';
+  }
+  return null;
+}
+
 // 広告ターゲット
 MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
   keywords: <String>['flutterio', 'beautiful apps'],
