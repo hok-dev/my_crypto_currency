@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     // インスタンスを初期化
-    FirebaseAdMob.instance
-        .initialize(appId: 'ca-app-pub-3891596250078294~3813146956');
+    FirebaseAdMob.instance.initialize(appId: getAppId());
     // バナー広告を表示する
     myBanner
       ..load()
@@ -175,6 +175,19 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+String getAppId() {
+  if (Platform.isIOS) {
+    print("appId ios");
+    // return BannerAd.testAdUnitId;
+    return 'ca-app-pub-3891596250078294~3813146956';
+  } else if (Platform.isAndroid) {
+    print("appId Android");
+    // return BannerAd.testAdUnitId;
+    return 'ca-app-pub-3891596250078294~3193322513';
+  }
+  return null;
+}
+
 // 広告ターゲット
 MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
   keywords: <String>['flutterio', 'beautiful apps'],
@@ -188,8 +201,9 @@ MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
 
 BannerAd myBanner = BannerAd(
   // テスト用のIDを使用
-  // リリース時にはIDを置き換える必要あり
-  adUnitId: BannerAd.testAdUnitId,
+  // adUnitId: BannerAd.testAdUnitId,
+  // 以下本番用
+  adUnitId: getAppId(),
   size: AdSize.smartBanner,
   targetingInfo: targetingInfo,
   listener: (MobileAdEvent event) {
