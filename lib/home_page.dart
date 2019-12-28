@@ -188,6 +188,19 @@ String getAppId() {
   return null;
 }
 
+String getBannerId() {
+  if (Platform.isIOS) {
+    print("appId ios");
+    // return BannerAd.testAdUnitId;
+    return 'ca-app-pub-3891596250078294/2718244058';
+  } else if (Platform.isAndroid) {
+    print("appId Android");
+    // return BannerAd.testAdUnitId;
+    return 'ca-app-pub-3891596250078294/9375587487';
+  }
+  return null;
+}
+
 // 広告ターゲット
 MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
   keywords: <String>['flutterio', 'beautiful apps'],
@@ -203,7 +216,7 @@ BannerAd myBanner = BannerAd(
   // テスト用のIDを使用
   // adUnitId: BannerAd.testAdUnitId,
   // 以下本番用
-  adUnitId: getAppId(),
+  adUnitId: getBannerId(),
   size: AdSize.smartBanner,
   targetingInfo: targetingInfo,
   listener: (MobileAdEvent event) {
