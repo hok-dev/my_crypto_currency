@@ -1,6 +1,15 @@
 # my_cc
 
-A new Flutter project.
+Convert cryptocurrency to Japanese Yen and Dollar.<br>
+Bitcoin, Ethereum, XRP, NEM, BitZeny, MonaCoin, ALIS, Sakuracoin, KumaCoin, Fujicoin, Koto.<br>
+Copy the after convert currency to the clipboard.<br>
+
+![ios_Screenshot_1](https://github.com/foxy1990/my_crypto_currency/blob/master/assets/Screenshot/ios_Screenshot_1.png?raw=true "ios_Screenshot_1")<br>
+![ios_Screenshot_2](https://github.com/foxy1990/my_crypto_currency/blob/master/assets/Screenshot/ios_Screenshot_2.png?raw=true "ios_Screenshot_2")<br>
+![ios_Screenshot_3](https://github.com/foxy1990/my_crypto_currency/blob/master/assets/Screenshot/ios_Screenshot_3.png?raw=true "ios_Screenshot_3")<br>
+![ios_Screenshot_4](https://github.com/foxy1990/my_crypto_currency/blob/master/assets/Screenshot/ios_Screenshot_4.png?raw=true "ios_Screenshot_4")<br>
+![ios_Screenshot_5](https://github.com/foxy1990/my_crypto_currency/blob/master/assets/Screenshot/ios_Screenshot_5.png?raw=true "ios_Screenshot_5")<br>
+
 
 ## Getting Started
 
