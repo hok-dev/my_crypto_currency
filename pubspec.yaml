@@ -31,6 +31,7 @@ dependencies:
   firebase_admob: 0.9.0+9
   # Androidで挙動不良で起動せず一旦コメントアウト
   # fluttertoast: ^3.1.3
+  flutter_dotenv: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - assets/coins/
+    - .env
 
 flutter_icons:
   android: true

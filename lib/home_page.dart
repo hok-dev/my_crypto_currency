@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:my_cc/detail_currency_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -178,12 +179,14 @@ class _HomePageState extends State<HomePage> {
 String getAppId() {
   if (Platform.isIOS) {
     print("appId ios");
-    // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294~3813146956';
+    print(DotEnv().env["ADMOB_IOS_APPID_MYCC"]);
+    return BannerAd.testAdUnitId;
+    // return DotEnv().env["ADMOB_IOS_APPID_MYCC"];
   } else if (Platform.isAndroid) {
     print("appId Android");
+    print(DotEnv().env["ADMOB_ANDROID_APPID_MYCC"]);
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294~3193322513';
+    return DotEnv().env["ADMOB_ANDROID_APPID_MYCC"];
   }
   return null;
 }
@@ -191,12 +194,14 @@ String getAppId() {
 String getBannerId() {
   if (Platform.isIOS) {
     print("appId ios");
-    // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294/2718244058';
+    print(DotEnv().env["ADMOB_IOS_BANNERID_MYCC"]);
+    return BannerAd.testAdUnitId;
+    // return DotEnv().env["ADMOB_IOS_BANNERID_MYCC"];
   } else if (Platform.isAndroid) {
     print("appId Android");
+    print(DotEnv().env["ADMOB_ANDROID_BANNERID_MYCC"]);
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-3891596250078294/9375587487';
+    return DotEnv().env["ADMOB_ANDROID_BANNERID_MYCC"];
   }
   return null;
 }

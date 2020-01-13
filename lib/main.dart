@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:my_cc/home_page.dart';
 
 void main() async {
@@ -95,6 +96,8 @@ void main() async {
     fujiMap,
     kotoMap,
   ];
+
+  await DotEnv().load('.env');
 
   runApp(new MyApp(currencyList));
 }
