@@ -33,6 +33,6 @@
         </activity>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ADMOB_ANDROID_APPID_MYCC=ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx"/>
+            android:value="ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx"/>
     </application>
 </manifest>

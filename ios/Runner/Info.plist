@@ -43,6 +43,5 @@
 	<false/>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx</string>
-	<!-- <string>${ADMOB_IOS_APPID_MYCC"}</string> -->
 </dict>
 </plist>

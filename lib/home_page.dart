@@ -178,13 +178,9 @@ class _HomePageState extends State<HomePage> {
 
 String getAppId() {
   if (Platform.isIOS) {
-    print("appId ios");
-    print(DotEnv().env["ADMOB_IOS_APPID_MYCC"]);
     return BannerAd.testAdUnitId;
     // return DotEnv().env["ADMOB_IOS_APPID_MYCC"];
   } else if (Platform.isAndroid) {
-    print("appId Android");
-    print(DotEnv().env["ADMOB_ANDROID_APPID_MYCC"]);
     // return BannerAd.testAdUnitId;
     return DotEnv().env["ADMOB_ANDROID_APPID_MYCC"];
   }
@@ -193,13 +189,9 @@ String getAppId() {
 
 String getBannerId() {
   if (Platform.isIOS) {
-    print("appId ios");
-    print(DotEnv().env["ADMOB_IOS_BANNERID_MYCC"]);
     return BannerAd.testAdUnitId;
     // return DotEnv().env["ADMOB_IOS_BANNERID_MYCC"];
   } else if (Platform.isAndroid) {
-    print("appId Android");
-    print(DotEnv().env["ADMOB_ANDROID_BANNERID_MYCC"]);
     // return BannerAd.testAdUnitId;
     return DotEnv().env["ADMOB_ANDROID_BANNERID_MYCC"];
   }
@@ -226,6 +218,6 @@ BannerAd myBanner = BannerAd(
   targetingInfo: targetingInfo,
   listener: (MobileAdEvent event) {
     // 広告の読み込みが完了
-    print("BannerAd event is $event");
+    // print("BannerAd event is $event");
   },
 );
