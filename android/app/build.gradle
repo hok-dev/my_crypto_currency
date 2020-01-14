@@ -61,6 +61,8 @@ android {
             minifyEnabled false
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // // 環境変数を参照する
+            // manifestPlaceholders = [admob_android_appid: System.getenv("ADMOB_ANDROID_APPID_MYCC")]
         }
     }
 

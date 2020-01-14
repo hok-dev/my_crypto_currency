@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:my_cc/detail_currency_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -177,26 +178,22 @@ class _HomePageState extends State<HomePage> {
 
 String getAppId() {
   if (Platform.isIOS) {
-    print("appId ios");
-    // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx';
+    return BannerAd.testAdUnitId;
+    // return DotEnv().env["ADMOB_IOS_APPID_MYCC"];
   } else if (Platform.isAndroid) {
-    print("appId Android");
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx';
+    return DotEnv().env["ADMOB_ANDROID_APPID_MYCC"];
   }
   return null;
 }
 
 String getBannerId() {
   if (Platform.isIOS) {
-    print("appId ios");
-    // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-xxxxxxxxxxxxxxxx/xxxxxxxxxx';
+    return BannerAd.testAdUnitId;
+    // return DotEnv().env["ADMOB_IOS_BANNERID_MYCC"];
   } else if (Platform.isAndroid) {
-    print("appId Android");
     // return BannerAd.testAdUnitId;
-    return 'ca-app-pub-xxxxxxxxxxxxxxxx/xxxxxxxxxx';
+    return DotEnv().env["ADMOB_ANDROID_BANNERID_MYCC"];
   }
   return null;
 }
@@ -221,6 +218,6 @@ BannerAd myBanner = BannerAd(
   targetingInfo: targetingInfo,
   listener: (MobileAdEvent event) {
     // 広告の読み込みが完了
-    print("BannerAd event is $event");
+    // print("BannerAd event is $event");
   },
 );
