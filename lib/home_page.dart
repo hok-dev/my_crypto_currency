@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
   Widget _cryptoWidget() {
     return new Container(
         // 最下Listが広告に被らない様にmarginセット
-        margin: const EdgeInsets.only(top: 10.0, bottom: 50.0),
+        margin: const EdgeInsets.only(top: 10.0, bottom: 60.0),
         child: new Column(
           children: <Widget>[
             new Flexible(
@@ -178,8 +178,8 @@ class _HomePageState extends State<HomePage> {
 
 String getAppId() {
   if (Platform.isIOS) {
-    return BannerAd.testAdUnitId;
-    // return DotEnv().env["ADMOB_IOS_APPID_MYCC"];
+    // return BannerAd.testAdUnitId;
+    return DotEnv().env["ADMOB_IOS_APPID_MYCC"];
   } else if (Platform.isAndroid) {
     // return BannerAd.testAdUnitId;
     return DotEnv().env["ADMOB_ANDROID_APPID_MYCC"];
@@ -189,8 +189,8 @@ String getAppId() {
 
 String getBannerId() {
   if (Platform.isIOS) {
-    return BannerAd.testAdUnitId;
-    // return DotEnv().env["ADMOB_IOS_BANNERID_MYCC"];
+    // return BannerAd.testAdUnitId;
+    return DotEnv().env["ADMOB_IOS_BANNERID_MYCC"];
   } else if (Platform.isAndroid) {
     // return BannerAd.testAdUnitId;
     return DotEnv().env["ADMOB_ANDROID_BANNERID_MYCC"];
