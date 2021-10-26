@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
   Widget _cryptoWidget() {
     return new Container(
         // 最下Listが広告に被らない様にmarginセット
-        margin: const EdgeInsets.only(top: 10.0, bottom: 60.0),
+        margin: const EdgeInsets.only(top: 10.0, bottom: 65.0),
         child: new Column(
           children: <Widget>[
             new Flexible(
