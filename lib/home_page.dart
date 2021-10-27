@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:my_cc/detail_currency_page.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
 class HomePage extends StatefulWidget {
   final List currencyList;
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    initPlugin();
     // インスタンスを初期化
     FirebaseAdMob.instance.initialize(appId: getAppId());
     // バナー広告を表示する
@@ -30,6 +32,13 @@ class _HomePageState extends State<HomePage> {
       );
 
     setState(() {});
+  }
+
+  Future<void> initPlugin() async {
+    Future.delayed(Duration(seconds: 1), () async {
+      final status =
+          await AppTrackingTransparency.requestTrackingAuthorization();
+    });
   }
 
   @override
