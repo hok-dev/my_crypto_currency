@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 // import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailCurrencyPage extends StatefulWidget {
   final String currencyId;
@@ -23,8 +24,9 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
   Map currencyMap = {};
   List<String> currencies;
   String result;
-  String fromCurrency = "JPY";
+  String fromCurrency = "";
   List<String> currenciesList = ["JPY", "USD"];
+  final String prefCatCurrency = 'Currency';
 
   Future<Map> futureCurrency;
   _DetailCurrencyPageState(this.currencyId, this.currencyName);
@@ -32,6 +34,60 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
   @override
   void initState() {
     super.initState();
+    _getInitCurrencyPrefStr();
+    // _loadCurrencies(this.currencyId);
+  }
+
+  // Currency設定, by SharedPreferences
+  _setCurrency(String currency) async {
+    setState(() {
+      _setPref(prefCatCurrency, currency);
+    });
+    _getCurrency();
+  }
+
+  // Currency取得, by SharedPreferences
+  _getCurrency() {
+    _getPrefStr(prefCatCurrency);
+  }
+
+  // SharedPreferences操作, 設定
+  _setPref(String key, String value) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString(key, value);
+    return value;
+  }
+
+  // SharedPreferences操作, 取得
+  Future<Null> _getPrefStr(String key) async {
+    String prefValue;
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      prefValue = pref.getString(key) ?? '';
+      // parameterがCurrencyの場合
+      if (key == prefCatCurrency) {
+        if (prefValue == '') {
+          fromCurrency = "JPY";
+        } else {
+          fromCurrency = prefValue;
+        }
+      }
+    });
+  }
+
+  // Init時Currency取得 SharedPreferences操作, 取得
+  Future<Null> _getInitCurrencyPrefStr() async {
+    String prefValue;
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    setState(() {
+      prefValue = pref.getString(prefCatCurrency) ?? '';
+      if (prefValue == '') {
+        fromCurrency = "JPY";
+      } else {
+        fromCurrency = prefValue;
+      }
+    });
+
     _loadCurrencies(this.currencyId);
   }
 
@@ -45,12 +101,16 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
       currencyMap = jsonDecode(response.body);
       currencies = currencyMap.keys.toList();
       if (fromCurrency == "JPY") {
-        result = currencyMap[currencyId]["jpy"].toString();
+        setState(() {
+          result = currencyMap[currencyId]["jpy"].toString();
+        });
       } else {
-        result = currencyMap[currencyId]["usd"].toString();
+        setState(() {
+          result = currencyMap[currencyId]["usd"].toString();
+        });
       }
 
-      setState(() {});
+      // setState(() {});
       // print("_loadCurrencies" + result);
       return "Success";
     } catch (e) {
@@ -92,9 +152,7 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
   }
 
   _onFromChanged(String value) {
-    setState(() {
-      fromCurrency = value;
-    });
+    _setCurrency(value);
   }
 
   @override
@@ -192,6 +250,7 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
       onChanged: (String value) {
         if (currencyCategory == fromCurrency) {
           _onFromChanged(value);
+          // _doConversion(this.currencyId);
         }
       },
     );

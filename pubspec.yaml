@@ -33,6 +33,7 @@ dependencies:
   # fluttertoast: ^3.1.3
   flutter_dotenv: ^2.1.0
   app_tracking_transparency: any
+  shared_preferences: ^0.5.12+4
 
 dev_dependencies:
   flutter_test:
