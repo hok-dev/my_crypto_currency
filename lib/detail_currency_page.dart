@@ -102,11 +102,15 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
       currencies = currencyMap.keys.toList();
       if (fromCurrency == "JPY") {
         setState(() {
-          result = currencyMap[currencyId]["jpy"].toString();
+          result = (double.parse(fromTextController.text) *
+                  (currencyMap[currencyId]["jpy"]))
+              .toString();
         });
       } else {
         setState(() {
-          result = currencyMap[currencyId]["usd"].toString();
+          result = (double.parse(fromTextController.text) *
+                  (currencyMap[currencyId]["usd"]))
+              .toString();
         });
       }
 
