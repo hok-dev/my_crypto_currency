@@ -25,7 +25,7 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
   List<String> currencies;
   String result;
   String fromCurrency = "";
-  List<String> currenciesList = ["JPY", "USD"];
+  List<String> currenciesList = ["JPY", "USD", "EUR"];
   final String prefCatCurrency = 'Currency';
 
   Future<Map> futureCurrency;
@@ -106,10 +106,16 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                   (currencyMap[currencyId]["jpy"]))
               .toString();
         });
-      } else {
+      } else if (fromCurrency == "USD") {
         setState(() {
           result = (double.parse(fromTextController.text) *
                   (currencyMap[currencyId]["usd"]))
+              .toString();
+        });
+      } else if (fromCurrency == "EUR") {
+        setState(() {
+          result = (double.parse(fromTextController.text) *
+                  (currencyMap[currencyId]["eur"]))
               .toString();
         });
       }
@@ -138,10 +144,16 @@ class _DetailCurrencyPageState extends State<DetailCurrencyPage> {
                   (currencyMap[currencyId]["jpy"]))
               .toString();
         });
-      } else {
+      } else if (fromCurrency == "USD") {
         setState(() {
           result = (double.parse(fromTextController.text) *
                   (currencyMap[currencyId]["usd"]))
+              .toString();
+        });
+      } else if (fromCurrency == "EUR") {
+        setState(() {
+          result = (double.parse(fromTextController.text) *
+                  (currencyMap[currencyId]["eur"]))
               .toString();
         });
       }
